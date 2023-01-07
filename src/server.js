@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 // create port variable
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 // Send request to routes for directing
 app.use("/", require("./routes"));
