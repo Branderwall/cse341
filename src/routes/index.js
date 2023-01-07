@@ -8,7 +8,7 @@ router.use('/test', testRouter);
 
 //test message for root route
 router.get("/", (req, res) => {
-    res.send("James I. Bond");
+    controller.displayTestRouteMessage(res, "Joanne Tan");
 });
 
 
