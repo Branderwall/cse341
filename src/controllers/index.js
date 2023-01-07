@@ -1,6 +1,9 @@
 // routing test message
-const displayTestRouteMessage = (res, message) => {
-    res.send(message);
+const displayTestRouteMessage = (message) => {
+    const displayMessage = (req, res) => {
+        res.send(message);
+    };
+    return displayMessage
 };
 
 module.exports = { displayTestRouteMessage };
