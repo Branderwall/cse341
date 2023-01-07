@@ -1,11 +1,15 @@
-const routes = require("express").Router();
+const router = require("express").Router();
 
-routes.get("/", (req, res) => {
+// **** Router Directory ****
+const testRouter = require('./test');
+router.use('/test', testRouter);
+
+
+
+//test message for root route
+router.get("/", (req, res) => {
     res.send("James I. Bond");
 });
 
-routes.get("/test1", (req, res) => {
-    res.send("Joanne Tan");
-});
 
-module.exports = routes;
+module.exports = router;
