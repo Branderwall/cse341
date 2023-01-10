@@ -1,6 +1,6 @@
-// routing test message
-const user = require("./user");
+// const user = require("./user");
 
+// routing test message
 const displayTestRouteMessage = (message) => {
     const displayMessage = (req, res) => {
         res.send(message);
@@ -8,4 +8,7 @@ const displayTestRouteMessage = (message) => {
     return displayMessage;
 };
 
-module.exports = { displayTestRouteMessage, user };
+module.exports = {
+    displayTestRouteMessage,
+    // user
+};
