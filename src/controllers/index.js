@@ -1,4 +1,4 @@
-// const user = require("./user");
+const user = require("./user");
 
 // routing test message
 const displayTestRouteMessage = (message) => {
@@ -10,5 +10,5 @@ const displayTestRouteMessage = (message) => {
 
 module.exports = {
     displayTestRouteMessage,
-    // user
+    user
 };

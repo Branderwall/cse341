@@ -3,7 +3,11 @@ const mongodb = require("../db/connect");
 const getUser = (table) => {
     userTable = mongodb.getDB().db("cse341").collection("user");
 
-    var results = userTable.find();
+    // var results = userTable.find();
+
+    var results = "This is a result.";
+
+    console.log("results");
     return results;
 };
 
