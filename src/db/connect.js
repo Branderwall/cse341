@@ -17,6 +17,7 @@ const initDB = (callback) => {
         .then((client) => {
             _db = client;
             callback(null, _db);
+            console.log("DB is connected");
         })
         .catch((err) => {
             callback(err);

@@ -1,10 +1,9 @@
 const express = require("express");
+const mongodb = require("./db/connect");
 const app = express();
 
 // create port variable
 const port = process.env.PORT || 3000;
-
-const mongodb = require("./db/connect");
 
 // Send request to routes for directing
 app.use("/", require("./routes"));
