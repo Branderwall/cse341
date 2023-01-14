@@ -4,6 +4,5 @@ const router = require("express").Router();
 // **** Router Directory ****
 router.get("/", controller.displayTestRouteMessage("Joanne Tan"));
 router.use("/contacts", require("./contacts"));
-router.use("/test", require("./test"));
 
 module.exports = router;
