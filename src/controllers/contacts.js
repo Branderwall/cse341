@@ -7,8 +7,6 @@ const getAllContacts = async (req, res) => {
         .db("cse341")
         .collection("contacts")
         .find()
-        .limit(10)
-        .maxTimeMS(10)
         .toArray();
     res.send(result);
 };
@@ -24,8 +22,6 @@ const getContactById = async (req, res) => {
         .db("cse341")
         .collection("contacts")
         .find(filter)
-        .limit(10)
-        .maxTimeMS(10)
         .toArray();
     res.send(result[0]);
 };

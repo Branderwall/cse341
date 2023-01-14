@@ -1,7 +1,16 @@
+# ****** Localhost Requests ***********
+
 ### Get All Contacts
-
 GET http://localhost:3000/contacts
-
 
 ### Get one Contact by id
 GET http://localhost:3000/contacts/63bf8f2eff09293ad5ba3252
+
+
+# ****** Render Requests ***********
+
+### Get All Contacts
+GET https://adamcse341.onrender.com/contacts
+
+### Get one Contact by id
+GET https://adamcse341.onrender.com/contacts/63bf8f2eff09293ad5ba3252
