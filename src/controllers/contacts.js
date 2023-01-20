@@ -28,7 +28,6 @@ const getContactById = async (req, res) => {
 
 const createContact = async (req, res) => {
     try {
-        // Uses JSON for request
         const contact = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -43,7 +42,7 @@ const createContact = async (req, res) => {
             .collection("contacts")
             .insertOne(contact);
 
-        console.log("Contact added " + result);
+        // console.log("Contact added " + result);
         if (result.acknowledged == true) {
             res.status(201).send("Contact added: " + result.insertedId);
         }
@@ -53,16 +52,15 @@ const createContact = async (req, res) => {
 };
 
 const updateContact = async (req, res) => {
+    const id = req.params.id;
+    const contact = req.body;
+
+    const filter = {
+        _id: new ObjectId(id),
+    };
+
+    // console.log(contact);
     try {
-        const id = req.params.id;
-        const contact = req.body;
-
-        const filter = {
-            _id: new ObjectId(id),
-        };
-
-        console.log(contact);
-
         const result = await mongodb
             .getDB()
             .db("cse341")
@@ -80,23 +78,22 @@ const updateContact = async (req, res) => {
 };
 
 const deleteContact = async (req, res) => {
+    const id = req.params.id;
+    const filter = {
+        _id: new ObjectId(id),
+    };
     try {
-        const id = req.params.id;
-        const filter = {
-            _id: new ObjectId(id),
-        };
         const result = await mongodb
             .getDB()
             .db("cse341")
             .collection("contacts")
-            .deleteOne(filter, (err, obj) => {
-                if (err) throw err;
-            });
+            .deleteOne(filter);
 
-        if (result.modifiedCount > 0) {
-            res.status(200).json(result);
+        if (result.deletedCount > 0) {
+            res.status(200).send();
         }
     } catch (err) {
+        // console.log(err);
         res.json({ message: err });
     }
 };
