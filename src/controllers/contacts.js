@@ -84,7 +84,19 @@ const updateContact = async (req, res) => {
 };
 
 const deleteContact = async (req, res) => {
-    //something
+    const id = req.params.id;
+    const filter = {
+        _id: new ObjectId(id),
+    };
+    const result = await mongodb
+        .getDB()
+        .db("cse341")
+        .collection("contacts")
+        .deleteOne(filter, (err, obj) => {
+            if (err) throw err;
+        });
+
+    res.send(result);
 };
 
 module.exports = {

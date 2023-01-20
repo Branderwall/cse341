@@ -19,6 +19,10 @@ Content-Type: application/json
     "birthday": "05-18-1975"
 }
 
+### Delete Contact
+DELETE http://localhost:3000/contacts/63c9dc3652bfab83d2dd5386
+
+
 # ****** Render Requests ***********
 
 ### Get All Contacts
