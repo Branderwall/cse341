@@ -3,6 +3,7 @@
 ### Get All Contacts
 GET http://localhost:3000/contacts
 
+
 ### Get one Contact by id
 GET http://localhost:3000/contacts/63bf8f2eff09293ad5ba3252
 
@@ -10,7 +11,6 @@ GET http://localhost:3000/contacts/63bf8f2eff09293ad5ba3252
 ### Create New Contact
 POST http://localhost:3000/contacts/ HTTP/1.1
 Content-Type: application/json
-
 {
     "firstName": "Jack",
     "lastName": "Black",
@@ -23,16 +23,14 @@ Content-Type: application/json
 ### Update Contact
 PUT http://localhost:3000/contacts/63c0cf2fccceac6b2e0aeb9c HTTP/1.1
 Content-Type: application/json
-
 {
-    "firstName": "Aaron",
+    "firstName": "Jerome",
     "lastName": "Jenkins"
 }
 
 
-
 ### Delete Contact
-DELETE http://localhost:3000/contacts/63ca29d501deea0a8cca697a
+DELETE http://localhost:3000/contacts/63ca2dfbc29cc6a87460ca54
 
 
 
@@ -41,7 +39,31 @@ DELETE http://localhost:3000/contacts/63ca29d501deea0a8cca697a
 ### Get All Contacts
 GET https://adamcse341.onrender.com/contacts
 
+
 ### Get one Contact by id
 GET https://adamcse341.onrender.com/contacts/63bf8f2eff09293ad5ba3252
 
 
+### Create New Contact
+POST https://adamcse341.onrender.com/contacts/ HTTP/1.1
+Content-Type: application/json
+{
+    "firstName": "William",
+    "lastName": "Heathcote",
+    "email": "wheathcote@test.com",
+    "favoriteColor": "Blue",
+    "birthday": "09-20-2004"
+}
+
+
+### Update Contact
+PUT https://adamcse341.onrender.com/contacts/63c0cf2fccceac6b2e0aeb9c HTTP/1.1
+Content-Type: application/json
+{
+    "firstName": "Jerome",
+    "lastName": "Jenkins"
+}
+
+
+### Delete Contact
+DELETE https://adamcse341.onrender.com/contacts/63c9df26bde1881df00bece8
