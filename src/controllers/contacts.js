@@ -23,24 +23,36 @@ const getContactById = async (req, res) => {
         .collection("contacts")
         .find(filter)
         .toArray();
-    res.send(result[0]);
+    res.json(result);
 };
 
 const createContact = async (req, res) => {
+    // Uses JSON for request
     const contact = {
-        firstName: req.params.firstName,
-        lastName: req.params.lastName,
-        email: req.params.email,
-        favoriteColor: req.params.favoriteColor,
-        birthday: req.params.birthday,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
     };
+
+    // Uses URL Params for request
+    // const contact = {
+    //     "firstName": req.params.firstName,
+    //     "lastName": req.params.lastName,
+    //     "email": req.params.email,
+    //     "favoriteColor": req.params.favoriteColor,
+    //     "birthday": req.params.birthday,
+    // };
     const result = await mongodb
         .getDB()
         .db("cse341")
         .collection("contacts")
         .insertOne(contact);
 
-    res.send("Contact added" + result.id);
+    console.log("Contact added " + result);
+    res.send("Contact added: " + result.insertedId);
+    res.json();
 };
 
 const updateContact = async (req, res) => {
