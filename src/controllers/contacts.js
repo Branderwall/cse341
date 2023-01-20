@@ -44,8 +44,9 @@ const createContact = async (req, res) => {
             .insertOne(contact);
 
         console.log("Contact added " + result);
-        res.send("Contact added: " + result.insertedId);
-        res.json();
+        if (result.acknowledged == true) {
+            res.status(201).send("Contact added: " + result.insertedId);
+        }
     } catch (err) {
         res.json({ message: err });
     }
