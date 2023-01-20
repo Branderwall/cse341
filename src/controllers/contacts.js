@@ -27,76 +27,77 @@ const getContactById = async (req, res) => {
 };
 
 const createContact = async (req, res) => {
-    // Uses JSON for request
-    const contact = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        favoriteColor: req.body.favoriteColor,
-        birthday: req.body.birthday,
-    };
+    try {
+        // Uses JSON for request
+        const contact = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            favoriteColor: req.body.favoriteColor,
+            birthday: req.body.birthday,
+        };
 
-    // Uses URL Params for request
-    // const contact = {
-    //     "firstName": req.params.firstName,
-    //     "lastName": req.params.lastName,
-    //     "email": req.params.email,
-    //     "favoriteColor": req.params.favoriteColor,
-    //     "birthday": req.params.birthday,
-    // };
-    const result = await mongodb
-        .getDB()
-        .db("cse341")
-        .collection("contacts")
-        .insertOne(contact);
+        const result = await mongodb
+            .getDB()
+            .db("cse341")
+            .collection("contacts")
+            .insertOne(contact);
 
-    console.log("Contact added " + result);
-    res.send("Contact added: " + result.insertedId);
-    res.json();
+        console.log("Contact added " + result);
+        res.send("Contact added: " + result.insertedId);
+        res.json();
+    } catch (err) {
+        res.json({ message: err });
+    }
 };
 
 const updateContact = async (req, res) => {
-    const contact = {
-        id: req.params.id,
-        firstName: req.params.firstName,
-        lastName: req.params.lastName,
-        email: req.params.email,
-        favoriteColor: req.params.favoriteColor,
-        birthday: req.params.birthday,
-    };
+    try {
+        const id = req.params.id;
+        const contact = req.body;
 
-    const filter = {
-        _id: new ObjectId(id),
-    };
+        const filter = {
+            _id: new ObjectId(id),
+        };
 
-    const result = await mongodb
-        .getDB()
-        .db("cse341")
-        .collection("contacts")
-        .updateOne(
-            { _id: id },
-            {
-                $set: { contact },
-            }
-        );
+        console.log(contact);
 
-    res.send("Contact Updated: ");
+        const result = await mongodb
+            .getDB()
+            .db("cse341")
+            .collection("contacts")
+            .updateOne(filter, {
+                $set: contact,
+            });
+
+        if (result.modifiedCount > 0) {
+            res.status(204).send(result);
+        }
+    } catch (err) {
+        res.json({ message: err });
+    }
 };
 
 const deleteContact = async (req, res) => {
-    const id = req.params.id;
-    const filter = {
-        _id: new ObjectId(id),
-    };
-    const result = await mongodb
-        .getDB()
-        .db("cse341")
-        .collection("contacts")
-        .deleteOne(filter, (err, obj) => {
-            if (err) throw err;
-        });
+    try {
+        const id = req.params.id;
+        const filter = {
+            _id: new ObjectId(id),
+        };
+        const result = await mongodb
+            .getDB()
+            .db("cse341")
+            .collection("contacts")
+            .deleteOne(filter, (err, obj) => {
+                if (err) throw err;
+            });
 
-    res.send(result);
+        if (result.modifiedCount > 0) {
+            res.status(200).json(result);
+        }
+    } catch (err) {
+        res.json({ message: err });
+    }
 };
 
 module.exports = {

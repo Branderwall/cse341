@@ -19,8 +19,21 @@ Content-Type: application/json
     "birthday": "05-18-1975"
 }
 
+
+### Update Contact
+PUT http://localhost:3000/contacts/63c0cf2fccceac6b2e0aeb9c HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Aaron",
+    "lastName": "Jenkins"
+}
+
+
+
 ### Delete Contact
-DELETE http://localhost:3000/contacts/63c9dc3652bfab83d2dd5386
+DELETE http://localhost:3000/contacts/63c9deb9a83335e33e9f10ef
+
 
 
 # ****** Render Requests ***********
