@@ -3,18 +3,18 @@ const mongodb = require("./db/connect");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+const routes = require("./routes");
 
 // create port variable
 const port = process.env.PORT || 3000;
 
-// body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(cors());
-
-// Send request to routes for directing
-app.use("/", require("./routes"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+    .use(cors())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use("/", routes);
 
 mongodb.initDB((err, mongodb) => {
     if (err) {
