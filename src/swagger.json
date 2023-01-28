@@ -1,14 +1,23 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Description",
+    "title": "Contacts API",
+    "description": "Contact creation, retrieval, update, and deletion API",
     "version": "1.0.0"
   },
-  "host": "adamcse341.onrender.com",
+  "host": "localhost:3000",
+  "servers": [
+    {
+      "url": "adamcse341.onrender.com"
+    },
+    {
+      "url": "localhost:3000"
+    }
+  ],
   "basePath": "/",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/": {
@@ -126,6 +135,65 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Contacts": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "John"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Smith"
+        },
+        "email": {
+          "type": "string",
+          "example": "jsmith@test.com"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "Blue"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "01-01-2001"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "ObjectId"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "email": {
+            "type": "string",
+            "example": "jsmith@test.com"
+          },
+          "favoriteColor": {
+            "type": "string",
+            "example": "Blue"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "01-01-2001"
           }
         }
       }
