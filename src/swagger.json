@@ -7,6 +7,9 @@
   },
   "host": "adamcse341.onrender.com",
   "basePath": "/",
+  "tags": {
+    "name": "Contacts"
+  },
   "schemes": [
     "https",
     "http"
@@ -32,6 +35,9 @@
     },
     "/contacts/": {
       "get": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -41,8 +47,18 @@
         }
       },
       "post": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
+          {
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Contacts"
+            },
+            "in": "query"
+          },
           {
             "name": "body",
             "in": "body",
@@ -80,6 +96,9 @@
     },
     "/contacts/{id}": {
       "get": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -96,6 +115,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -103,6 +125,30 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -115,6 +161,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -155,38 +204,6 @@
         "birthday": {
           "type": "string",
           "example": "01-01-2001"
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Contact": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "ObjectId"
-          },
-          "firstName": {
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Smith"
-          },
-          "email": {
-            "type": "string",
-            "example": "jsmith@test.com"
-          },
-          "favoriteColor": {
-            "type": "string",
-            "example": "Blue"
-          },
-          "birthday": {
-            "type": "string",
-            "example": "01-01-2001"
-          }
         }
       }
     }
