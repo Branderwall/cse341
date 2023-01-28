@@ -1,37 +1,5 @@
 const swaggerAutogen = require("swagger-autogen")();
 
-// const contactSchema = {
-//     Contacts: {
-//         type: "object",
-//         properties: {
-//             id: { type: "ObjectId" },
-//             firstName: {
-//                 type: "string",
-//                 example: "John",
-//             },
-//             lastName: {
-//                 type: "string",
-//                 example: "Smith",
-//             },
-//             email: {
-//                 type: "string",
-//                 example: "jsmith@test.com",
-//             },
-//             favoriteColor: {
-//                 type: "string",
-//                 example: "Blue",
-//             },
-//             birthday: {
-//                 type: "string",
-//                 example: "01-01-2001",
-//             },
-//         },
-//     },
-// };
-// components: {
-//   schemas: contactSchema,
-// },
-
 // localhost:3000
 // adamcse341.onrender.com
 const doc = {
