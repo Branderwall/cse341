@@ -42,9 +42,9 @@ const createContact = async (req, res) => {
             .collection("contacts")
             .insertOne(contact);
 
-        // console.log("Contact added " + result);
+        // console.log("Contact added " + result.insertedId);
         if (result.acknowledged == true) {
-            res.status(201).send("Contact added: " + result.insertedId);
+            res.status(201).json(result.insertedId);
         }
     } catch (err) {
         res.json({ message: err });

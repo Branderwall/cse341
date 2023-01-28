@@ -15,6 +15,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
     .use((req, res, next) => {
+        //Change * to server site to prevent external site access
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader(
             "Access-Control-Allow-Headers",
