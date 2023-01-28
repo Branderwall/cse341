@@ -2,28 +2,36 @@ const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAllContacts = async (req, res) => {
-    const result = await mongodb
-        .getDB()
-        .db("cse341")
-        .collection("contacts")
-        .find()
-        .toArray();
-    res.json(result);
+    try {
+        const result = await mongodb
+            .getDB()
+            .db("cse341")
+            .collection("contacts")
+            .find()
+            .toArray();
+        res.json(result);
+    } catch (err) {
+        res.json({ message: err });
+    }
 };
 
 const getContactById = async (req, res) => {
-    const id = req.params.id;
-    const filter = {
-        _id: new ObjectId(id),
-    };
+    try {
+        const id = req.params.id;
+        const filter = {
+            _id: new ObjectId(id),
+        };
 
-    const result = await mongodb
-        .getDB()
-        .db("cse341")
-        .collection("contacts")
-        .find(filter)
-        .toArray();
-    res.json(result);
+        const result = await mongodb
+            .getDB()
+            .db("cse341")
+            .collection("contacts")
+            .find(filter)
+            .toArray();
+        res.json(result);
+    } catch (err) {
+        res.json({ message: err });
+    }
 };
 
 const createContact = async (req, res) => {
@@ -52,15 +60,15 @@ const createContact = async (req, res) => {
 };
 
 const updateContact = async (req, res) => {
-    const id = req.params.id;
-    const contact = req.body;
-
-    const filter = {
-        _id: new ObjectId(id),
-    };
-
-    // console.log(contact);
     try {
+        const id = req.params.id;
+        const contact = req.body;
+
+        const filter = {
+            _id: new ObjectId(id),
+        };
+
+        // console.log(contact);
         const result = await mongodb
             .getDB()
             .db("cse341")
@@ -78,11 +86,12 @@ const updateContact = async (req, res) => {
 };
 
 const deleteContact = async (req, res) => {
-    const id = req.params.id;
-    const filter = {
-        _id: new ObjectId(id),
-    };
     try {
+        const id = req.params.id;
+        const filter = {
+            _id: new ObjectId(id),
+        };
+
         const result = await mongodb
             .getDB()
             .db("cse341")
