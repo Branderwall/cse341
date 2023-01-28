@@ -36,12 +36,6 @@ const doc = {
     },
     servers: [{ url: "adamcse341.onrender.com" }, { url: "localhost:3000" }],
     schemes: ["https", "http"],
-    // tags: [
-    //     {
-    //         name: "Contacts",
-    //         description: "Contact information",
-    //     },
-    // ],
     components: {
         schemas: contactSchema,
     },
