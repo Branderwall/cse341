@@ -69,8 +69,6 @@ const createContact = async (req, res) => {
 const updateContact = async (req, res) => {
     /* Swagger Definitions
     #swagger.tags = ["Contacts"]
-    
-
     */
     try {
         const id = req.params.id;
