@@ -34,7 +34,7 @@ const doc = {
         title: "Contacts API",
         description: "Contact creation, retrieval, update, and deletion API",
     },
-    servers: [{ url: "adamcse341.onrender.com" }, { url: "localhost:3000" }],
+    host: "adamcse341.onrender.com",
     schemes: ["https", "http"],
     components: {
         schemas: contactSchema,

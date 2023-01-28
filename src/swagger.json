@@ -5,15 +5,7 @@
     "description": "Contact creation, retrieval, update, and deletion API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
-  "servers": [
-    {
-      "url": "adamcse341.onrender.com"
-    },
-    {
-      "url": "localhost:3000"
-    }
-  ],
+  "host": "adamcse341.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
