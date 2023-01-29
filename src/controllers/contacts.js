@@ -89,7 +89,7 @@ const updateContact = async (req, res) => {
             .getDB()
             .db("cse341")
             .collection("contacts")
-            .updateOne(filter, {
+            .replaceOne(filter, {
                 $set: contact,
             });
 
