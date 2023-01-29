@@ -72,13 +72,14 @@ const updateContact = async (req, res) => {
     */
     try {
         const id = req.params.id;
-        const contact = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            favoriteColor: req.body.favoriteColor,
-            birthday: req.body.birthday,
-        };
+        const contact = req.body;
+        // const contact = {
+        //     firstName: req.body.firstName,
+        //     lastName: req.body.lastName,
+        //     email: req.body.email,
+        //     favoriteColor: req.body.favoriteColor,
+        //     birthday: req.body.birthday,
+        // };
 
         const filter = {
             _id: new ObjectId(id),
@@ -89,7 +90,7 @@ const updateContact = async (req, res) => {
             .getDB()
             .db("cse341")
             .collection("contacts")
-            .replaceOne(filter, {
+            .updateOne(filter, {
                 $set: contact,
             });
 
