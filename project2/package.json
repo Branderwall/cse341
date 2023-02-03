@@ -18,6 +18,7 @@
     },
     "scripts": {
         "start": "cd server && node server.js",
+        "dev": "cd server && nodemon server.js",
         "swagstart": "cd src && node swagger.js && cd .. && nodemon src/server.js"
     },
     "devDependencies": {

@@ -1,3 +1,6 @@
+const mongodb = require("../db/connect");
+const ObjectId = require("mongodb").ObjectId;
+
 const getAllPosts = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
@@ -28,6 +31,7 @@ const getPostById = async (req, res) => {
             .find(filter)
             .toArray();
         res.json(result);
+        console.log(result);
     } catch (err) {
         res.json({ message: err });
     }

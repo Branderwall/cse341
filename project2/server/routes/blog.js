@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const controller = require("../controllers");
+const controller = require("../controllers/blog");
 
-router.get("/", controller.blog.getAllPosts);
-router.get("/:id", controller.blog.getPostById);
-router.post("/", controller.blog.createPost);
-router.delete("/:id", controller.blog.deletePost);
+router.get("/", controller.getAllPosts);
+router.get("/:id", controller.getPostById);
+router.post("/", controller.createPost);
+router.delete("/:id", controller.deletePost);
 
 module.exports = router;
