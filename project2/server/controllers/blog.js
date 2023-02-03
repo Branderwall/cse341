@@ -55,4 +55,5 @@ const createPost = async (req, res) => {
 module.exports = {
     getAllPosts,
     getPostById,
+    createPost,
 };
