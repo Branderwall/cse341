@@ -1,14 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Contacts API",
-    "description": "Contact creation, retrieval, update, and deletion API",
+    "title": "Blog API",
+    "description": "Blog creation, retrieval, update, and deletion API",
     "version": "1.0.0"
   },
-  "host": "adamcse341.onrender.com",
+  "host": "adamcse341blog.onrender.com",
   "basePath": "/",
   "tags": {
-    "name": "Contacts"
+    "name": "Blog"
   },
   "schemes": [
     "https",
@@ -33,10 +33,10 @@
         "responses": {}
       }
     },
-    "/contacts/": {
+    "/blog/": {
       "get": {
         "tags": [
-          "Contacts"
+          "Blog"
         ],
         "description": "",
         "parameters": [],
@@ -48,36 +48,35 @@
       },
       "post": {
         "tags": [
-          "Contacts"
+          "Blog"
         ],
         "description": "",
         "parameters": [
-          {
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/Contacts"
-            },
-            "in": "query"
-          },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "title": {
                   "example": "any"
                 },
-                "lastName": {
+                "slug": {
                   "example": "any"
                 },
-                "email": {
+                "body": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "author": {
                   "example": "any"
                 },
-                "birthday": {
+                "publishDate": {
+                  "example": "any"
+                },
+                "tags": {
+                  "example": "any"
+                },
+                "featuredImage": {
                   "example": "any"
                 }
               }
@@ -94,10 +93,10 @@
         }
       }
     },
-    "/contacts/{id}": {
+    "/blog/{id}": {
       "get": {
         "tags": [
-          "Contacts"
+          "Blog"
         ],
         "description": "",
         "parameters": [
@@ -111,34 +110,12 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Contacts"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "204": {
-            "description": "No Content"
           }
         }
       },
       "delete": {
         "tags": [
-          "Contacts"
+          "Blog"
         ],
         "description": "",
         "parameters": [
@@ -158,28 +135,36 @@
     }
   },
   "definitions": {
-    "Contacts": {
+    "Blog": {
       "type": "object",
       "properties": {
-        "firstName": {
+        "title": {
           "type": "string",
-          "example": "John"
+          "example": "Adam Blog"
         },
-        "lastName": {
+        "slug": {
           "type": "string",
-          "example": "Smith"
+          "example": "adam-blog"
         },
-        "email": {
+        "body": {
           "type": "string",
-          "example": "jsmith@test.com"
+          "example": "This is the body of the blog post."
         },
-        "favoriteColor": {
+        "author": {
           "type": "string",
-          "example": "Blue"
+          "example": "Adam Tan"
         },
-        "birthday": {
+        "publishDate": {
           "type": "string",
-          "example": "01-01-2001"
+          "example": "02-02-2023"
+        },
+        "tags": {
+          "type": "string",
+          "example": "['tech', 'jsx', 'react']"
+        },
+        "featuredImage": {
+          "type": "string",
+          "example": "http://fakeurl.com/image"
         }
       }
     }
