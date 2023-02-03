@@ -19,7 +19,7 @@
     "scripts": {
         "start": "cd server && node server.js",
         "dev": "cd server && nodemon server.js",
-        "swagstart": "cd src && node swagger.js && cd .. && nodemon src/server.js"
+        "swagstart": "cd server && node swagger.js && cd .. && nodemon server/server.js"
     },
     "devDependencies": {
         "eslint-config-prettier": "^8.6.0",
