@@ -1,4 +1,4 @@
-
+const blog = require("./blog");
 // routing test message
 const displayTestRouteMessage = (message) => {
     const displayMessage = (req, res) => {
@@ -9,4 +9,5 @@ const displayTestRouteMessage = (message) => {
 
 module.exports = {
     displayTestRouteMessage,
+    blog
 };

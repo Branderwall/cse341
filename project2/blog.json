@@ -1,0 +1,12 @@
+{
+    "blog": {
+        "id": "ea3jikd8kl3js77d",
+        "title": "Adam Blog",
+        "slug": "adam-blog",
+        "body": "This is the body of the blog post.",
+        "author": "Adam Tan",
+        "publishDate": "02-02-2023",
+        "tags": "['tech', 'jsx', 'react']",
+        "featuredImage": "http://fakeurl.com/image"
+    }
+}
