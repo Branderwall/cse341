@@ -1,14 +1,20 @@
-const swaggerAutogen = require("swagger-autogen")();
+const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
 
-// localhost:3000
-// adamcse341.onrender.com
 const doc = {
     info: {
         title: "Blog API",
         description: "Blog creation, retrieval, update, and deletion API",
     },
-    host: "adamcse341blog.onrender.com",
-    schemes: ["https", "http"],
+    servers: [
+        {
+            url: "https://adamcse341blog.onrender.com/",
+            description: "Remote Server",
+        },
+        {
+            url: "http://localhost:3000/",
+            description: "Local Server",
+        },
+    ],
     tags: {
         name: "Blog",
     },

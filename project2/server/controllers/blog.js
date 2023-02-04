@@ -6,7 +6,7 @@ const getAllPosts = async (req, res) => {
     try {
         const result = await mongodb
             .getDB()
-            .db("cse341")
+            .db("cse341blog")
             .collection("blog")
             .find()
             .toArray();
@@ -26,7 +26,26 @@ const getPostById = async (req, res) => {
 
         const result = await mongodb
             .getDB()
-            .db("cse341")
+            .db("cse341blog")
+            .collection("blog")
+            .find(filter)
+            .toArray();
+        res.json(result);
+        console.log(result);
+    } catch (err) {
+        res.json({ message: err });
+    }
+};
+
+const getPostBySlug = async (req, res) => {
+    // #swagger.tags = ['Blog']
+    try {
+        const slug = req.params.slug;
+        const filter = { slug: slug };
+
+        const result = await mongodb
+            .getDB()
+            .db("cse341blog")
             .collection("blog")
             .find(filter)
             .toArray();
@@ -53,12 +72,47 @@ const createPost = async (req, res) => {
 
         const result = await mongodb
             .getDB()
-            .db("cse341")
+            .db("cse341blog")
             .collection("blog")
             .insertOne(blog);
 
         if (result.acknowledged == true) {
             res.status(201).json(result.insertedId);
+        }
+    } catch (err) {
+        res.json({ message: err });
+    }
+};
+
+const updatePost = async (req, res) => {
+    // #swagger.tags = ['Blog']
+    try {
+        const id = req.params.id;
+
+        const filter = {
+            _id: new ObjectId(id),
+        };
+
+        const blog = {
+            title: req.body.title,
+            slug: req.body.slug,
+            body: req.body.body,
+            author: req.body.author,
+            publishDate: req.body.publishDate,
+            tags: req.body.tags,
+            featuredImage: req.body.featuredImage,
+        };
+
+        const result = await mongodb
+            .getDB()
+            .db("cse341blog")
+            .collection("blog")
+            .updateOne(filter, {
+                $set: blog,
+            });
+
+        if (result.modifiedCount > 0) {
+            res.status(204).send(result);
         }
     } catch (err) {
         res.json({ message: err });
@@ -75,7 +129,7 @@ const deletePost = async (req, res) => {
 
         const result = await mongodb
             .getDB()
-            .db("cse341")
+            .db("cse341blog")
             .collection("blog")
             .deleteOne(filter);
 
@@ -91,6 +145,8 @@ const deletePost = async (req, res) => {
 module.exports = {
     getAllPosts,
     getPostById,
+    getPostBySlug,
+    updatePost,
     createPost,
     deletePost,
 };

@@ -1,19 +1,23 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Blog API",
     "description": "Blog creation, retrieval, update, and deletion API",
     "version": "1.0.0"
   },
-  "host": "adamcse341blog.onrender.com",
-  "basePath": "/",
+  "servers": [
+    {
+      "url": "https://adamcse341blog.onrender.com/",
+      "description": "Remote Server"
+    },
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local Server"
+    }
+  ],
   "tags": {
     "name": "Blog"
   },
-  "schemes": [
-    "https",
-    "http"
-  ],
   "paths": {
     "/": {
       "get": {
@@ -51,44 +55,45 @@
           "Blog"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "slug": {
-                  "example": "any"
-                },
-                "body": {
-                  "example": "any"
-                },
-                "author": {
-                  "example": "any"
-                },
-                "publishDate": {
-                  "example": "any"
-                },
-                "tags": {
-                  "example": "any"
-                },
-                "featuredImage": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "201": {
             "description": "Created"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "slug": {
+                    "example": "any"
+                  },
+                  "body": {
+                    "example": "any"
+                  },
+                  "author": {
+                    "example": "any"
+                  },
+                  "publishDate": {
+                    "example": "any"
+                  },
+                  "tags": {
+                    "example": "any"
+                  },
+                  "featuredImage": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -104,12 +109,70 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Blog"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "slug": {
+                    "example": "any"
+                  },
+                  "body": {
+                    "example": "any"
+                  },
+                  "author": {
+                    "example": "any"
+                  },
+                  "publishDate": {
+                    "example": "any"
+                  },
+                  "tags": {
+                    "example": "any"
+                  },
+                  "featuredImage": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -123,7 +186,9 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -134,37 +199,39 @@
       }
     }
   },
-  "definitions": {
-    "Blog": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "example": "Adam Blog"
-        },
-        "slug": {
-          "type": "string",
-          "example": "adam-blog"
-        },
-        "body": {
-          "type": "string",
-          "example": "This is the body of the blog post."
-        },
-        "author": {
-          "type": "string",
-          "example": "Adam Tan"
-        },
-        "publishDate": {
-          "type": "string",
-          "example": "02-02-2023"
-        },
-        "tags": {
-          "type": "string",
-          "example": "['tech', 'jsx', 'react']"
-        },
-        "featuredImage": {
-          "type": "string",
-          "example": "http://fakeurl.com/image"
+  "components": {
+    "schemas": {
+      "Blog": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Adam Blog"
+          },
+          "slug": {
+            "type": "string",
+            "example": "adam-blog"
+          },
+          "body": {
+            "type": "string",
+            "example": "This is the body of the blog post."
+          },
+          "author": {
+            "type": "string",
+            "example": "Adam Tan"
+          },
+          "publishDate": {
+            "type": "string",
+            "example": "02-02-2023"
+          },
+          "tags": {
+            "type": "string",
+            "example": "['tech', 'jsx', 'react']"
+          },
+          "featuredImage": {
+            "type": "string",
+            "example": "http://fakeurl.com/image"
+          }
         }
       }
     }
