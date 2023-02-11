@@ -18,7 +18,7 @@ Content-Type: application/json
     "body": "This is the body of the blog post.",
     "author": "Adam Tan",
     "publishDate": "02-02-2023",
-    "tags": "['tech', 'jsx', 'react']",
+    "tags": ["tech", "jsx", "react"],
     "featuredImage": "http://fakeurl.com/image"
 }
 
@@ -29,16 +29,16 @@ Content-Type: application/json
 {
     "title": "Adam Blog",
     "slug": "adam-blog",
-    "body": "This is the body of the blog post. You can type whatever you want in this space.",
+    "body": "Yep. False. This is the body of the blog post. You can type whatever you want in this space.",
     "author": "Adam Tan",
     "publishDate": "02-02-2023",
-    "tags": "['tech', 'jsx', 'react']",
+    "tags": "['tech','jsx','react']",
     "featuredImage": "http://fakeurl.com/image"
 }
 
 
 ### Delete Blogpost
-DELETE http://localhost:3000/blog/63dcb308031bcd2d07aef1b2
+DELETE http://localhost:3000/blog/63e711c262cb216d8656ee71
 
 
 
