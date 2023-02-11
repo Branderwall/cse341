@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -13,6 +13,8 @@ const initDB = (callback) => {
         console.log("DB is already initialized!");
         return callback(null, _db);
     }
+    mongoose.set('strictQuery', false);
+    mongoose.set('sanitizeFilter', true);
     mongoose
         .connect(mongoURL)
         .then(() => {
@@ -23,6 +25,7 @@ const initDB = (callback) => {
         .catch((err) => {
             callback(err);
         });
+
 };
 
 const getDB = () => {
