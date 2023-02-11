@@ -6,10 +6,16 @@ const getAllPosts = async (req, res) => {
     try {
         const result = await Blog.find().exec();
 
-        res.status(200).json(result);
         // console.log(result);
+
+        if(result){
+        res.status(200).json(result);
+        } else {
+            throw {status: 400, message: "No posts found."}
+        }
+        
     } catch (err) {
-        res.status(400).json({ message: err });
+        res.status(err.status || 400).json({ message: err.message } || "An error ocurred while locating posts.");
     }
 };
 
@@ -17,19 +23,23 @@ const getPostById = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
         if (!ObjectId.isValid(req.params.id)) {
-            res.status(400).json("Invalid id. Please use a vaild id.");
+            throw {status: 400, message: "Invalid id. Please use a vaild id."};
         }
 
         const filter = {
             _id: new ObjectId(req.params.id),
         };
 
-        const result = await Blog.find(filter).exec();
+        const result = await Blog.findOne(filter);
 
-        res.status(200).json(result);
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            throw {status: 400, message: "Id not found. Please use a valid id."};
+        }
         // console.log(result);
     } catch (err) {
-        res.status(400).json({ message: err });
+        res.status(err.status || 400).json({ message: err.message } || "An error ocurred while locating a post.");
     }
 };
 
@@ -53,10 +63,12 @@ const createPost = async (req, res) => {
 
         if (result) {
             res.status(201).json(result._id);
+        } else {
+            throw {status: 400, message: "An error ocurred while creating a post. Please review all required fields."}
         }
     } catch (err) {
-        res.status(500).json(
-            { message: err } || "An error occured while creating a post."
+        res.status(err.status || 500).json(
+            { message: err.message } || "An error occured while creating a post."
         );
     }
 };
@@ -65,7 +77,7 @@ const updatePost = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
         if (!ObjectId.isValid(req.params.id)) {
-            res.status(400).json("Invalid id. Please use a vaild id.");
+            throw {status: 400, message: "Invalid id. Please use a vaild id."};
         }
 
         const filter = {
@@ -89,10 +101,14 @@ const updatePost = async (req, res) => {
         ).exec();
 
         // console.log(result);
-        res.status(204).send(result);
+        if (result) {
+            res.status(204).send(result);
+        } else {
+            throw { status: 400, message: "Id not found. Please use a valid id."};
+        }
     } catch (err) {
-        res.status(500).json(
-            { message: err } || "An error occured while updating a post."
+        res.status(err.status || 500).json(
+            { message: err.message } || "An error occured while updating a post."
         );
     }
 };
@@ -101,7 +117,7 @@ const deletePost = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
         if (!ObjectId.isValid(req.params.id)) {
-            res.status(400).json("Invalid id. Please use a vaild id.");
+            throw {status: 400, message: "Invalid id. Please use a vaild id."};
         }
 
         const filter = {
@@ -112,11 +128,13 @@ const deletePost = async (req, res) => {
 
         if (result.deletedCount > 0) {
             res.status(200).send();
+        } else {
+            throw {status: 400, message: "Id not found. Please use a valid id."}
         }
     } catch (err) {
         // console.log(err);
-        res.status(500).json(
-            { message: err } || "An error occured while deleting a post."
+        res.status(err.status || 500).json(
+            { message: err.message } || "An error occured while deleting a post."
         );
     }
 };
