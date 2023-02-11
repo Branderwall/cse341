@@ -29,7 +29,7 @@ Content-Type: application/json
 {
     "title": "Adam Blog2",
     "slug": "adam-blog2",
-    "body": "ATAT Truth. ATTTThis is the body of the blog post.",
+    "body": "Here is Part 2. This is the body of the blog post.",
     "author": "Adam Tan",
     "publishDate": "02-02-2023",
     "tags": "['tech', 'jsx', 'react']",
