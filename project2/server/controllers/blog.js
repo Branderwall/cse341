@@ -6,7 +6,6 @@ const getAllPosts = async (req, res) => {
     try {
         const result = await Blog.find().exec();
 
-        res.setHeader("Content-Type", "application/json");
         res.status(200).json(result);
         // console.log(result);
     } catch (err) {
@@ -27,7 +26,6 @@ const getPostById = async (req, res) => {
 
         const result = await Blog.find(filter).exec();
 
-        res.setHeader("Content-Type", "application/json");
         res.status(200).json(result);
         // console.log(result);
     } catch (err) {
@@ -92,7 +90,6 @@ const updatePost = async (req, res) => {
 
         // console.log(result);
         res.status(204).send(result);
-
     } catch (err) {
         res.status(500).json(
             { message: err } || "An error occured while updating a post."
