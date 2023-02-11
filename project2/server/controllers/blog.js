@@ -119,16 +119,14 @@ const updatePost = async (req, res) => {
             featuredImage: req.body.featuredImage,
         };
 
-        const result = await Blog.findOneAndUpdate(filter, {
-            $set: blog,
-        })
-            .exec()
-            .then(() => {
-                res.status(204).send(result);
-            });
+        const result = await Blog.findOneAndUpdate(
+            filter,
+            { $set: blog },
+            { new: true }
+        ).exec();
 
         console.log("Retrieved Post");
-        console.log(dbblog);
+        console.log(result);
 
         // dbblog = blog;
 
@@ -145,11 +143,9 @@ const updatePost = async (req, res) => {
         //         $set: blog,
         //     });
 
-        console.log(result);
-
-        if (result) {
-            res.status(204).send(result);
-        }
+        // if (result) {
+        res.status(204).send(result);
+        // }
     } catch (err) {
         res.status(500).json(
             { message: err } || "An error occured while updating a post."
