@@ -12,18 +12,22 @@ const getAllPosts = async (req, res) => {
         //     .collection("blog")
         //     .find()
         //     .toArray();
-        res.json(result);
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(result);
     } catch (err) {
-        res.json({ message: err });
+        res.status(400).json({ message: err });
     }
 };
 
 const getPostById = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
-        const id = req.params.id;
+        if (!ObjectId.isValid(req.params.id)) {
+            res.status(400).json("Invalid id. Please use a vaild id.");
+        }
+
         const filter = {
-            _id: new ObjectId(id),
+            _id: new ObjectId(req.params.id),
         };
 
         const result = await Blog.find(filter).exec();
@@ -34,10 +38,11 @@ const getPostById = async (req, res) => {
         //     .collection("blog")
         //     .find(filter)
         //     .toArray();
-        res.json(result);
-        console.log(result);
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(result);
+        // console.log(result);
     } catch (err) {
-        res.json({ message: err });
+        res.status(400).json({ message: err });
     }
 };
 
@@ -87,17 +92,21 @@ const createPost = async (req, res) => {
             res.status(201).json(result._id);
         }
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json(
+            { message: err } || "An error occured while creating a post."
+        );
     }
 };
 
 const updatePost = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
-        const id = req.params.id;
+        if (!ObjectId.isValid(req.params.id)) {
+            res.status(400).json("Invalid id. Please use a vaild id.");
+        }
 
         const filter = {
-            _id: new ObjectId(id),
+            _id: new ObjectId(req.params.id),
         };
 
         const blog = {
@@ -142,16 +151,21 @@ const updatePost = async (req, res) => {
             res.status(204).send(result);
         }
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json(
+            { message: err } || "An error occured while updating a post."
+        );
     }
 };
 
 const deletePost = async (req, res) => {
     // #swagger.tags = ['Blog']
     try {
-        const id = req.params.id;
+        if (!ObjectId.isValid(req.params.id)) {
+            res.status(400).json("Invalid id. Please use a vaild id.");
+        }
+
         const filter = {
-            _id: new ObjectId(id),
+            _id: new ObjectId(req.params.id),
         };
 
         const result = await Blog.deleteOne(filter);
@@ -167,7 +181,9 @@ const deletePost = async (req, res) => {
         }
     } catch (err) {
         // console.log(err);
-        res.json({ message: err });
+        res.status(500).json(
+            { message: err } || "An error occured while deleting a post."
+        );
     }
 };
 
