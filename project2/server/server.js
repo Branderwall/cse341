@@ -22,7 +22,7 @@ app.use(
 );
 
 app.get('/', function(req, res) {
-    res.render('auth');
+    res.render('pages/auth');
   });
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
