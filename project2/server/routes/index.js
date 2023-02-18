@@ -7,7 +7,8 @@ var userProfile;
 
 // **** Router Directory ****
 router.use("/", apidocs);
-router.get("/", controller.displayTestRouteMessage("Home Page"));
+router.get("/", auth.loadLogin);
+// router.get("/", controller.displayTestRouteMessage("Home Page"));
 router.use("/blog", require("./blog"));
 
 // Auth Routes

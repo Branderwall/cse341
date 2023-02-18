@@ -22,6 +22,10 @@ passport.use(
 
 /*** AUTH ROUTING ***/
 
+const loadLogin = (req, res) => {
+    res.render("pages/auth");
+};
+
 const login = passport.authenticate("google", { scope: ["profile", "email"] });
 
 const callbackError = passport.authenticate("google", {
@@ -35,9 +39,13 @@ const callbackSuccess = (req, res) => {
 
 const loginError = (req, res) => res.send("error logging in");
 
-const loginSuccess = (req, res) => res.send(userProfile);
+const loginSuccess = (req, res) => {
+    res.render("pages/success", { user: userProfile });
+    // res.send(userProfile);
+};
 
 module.exports = {
+    loadLogin,
     login,
     callbackError,
     callbackSuccess,

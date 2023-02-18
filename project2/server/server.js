@@ -21,9 +21,9 @@ app.use(
     })
 );
 
-app.get("/", function (req, res) {
-    res.render("pages/auth");
-});
+// app.get("/", function (req, res) {
+//     res.render("pages/auth");
+// });
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     .use(cors())
