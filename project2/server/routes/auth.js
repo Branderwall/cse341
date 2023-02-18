@@ -40,8 +40,9 @@ const callbackSuccess = (req, res) => {
 const loginError = (req, res) => res.send("error logging in");
 
 const loginSuccess = (req, res) => {
-    res.render("pages/success", { user: userProfile });
-    // res.send(userProfile);
+    // res.render("pages/success", { user: userProfile });
+    var profileInfo = "Login Successful! Name: " + userProfile.displayName + ", Email: " + userProfile.emails[0].value;
+    res.send(profileInfo);
 };
 
 module.exports = {
