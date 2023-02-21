@@ -1,20 +1,31 @@
 const controller = require("../controllers");
 const router = require("express").Router();
 const apidocs = require("./apidocs");
-const auth = require("./auth");
+const auth0 = require("./auth0");
+const { requiresAuth } = require('express-openid-connect');
+const { auth } = require('express-openid-connect');
 
-var userProfile;
 
-// **** Router Directory ****
+// **** Router Directory ****/
 router.use("/", apidocs);
-router.get("/", auth.loadLogin);
-// router.get("/", controller.displayTestRouteMessage("Home Page"));
-router.use("/blog", require("./blog"));
+router.use(auth(auth0.authConfig));
 
-// Auth Routes
-router.get("/auth/google", auth.login);
-router.get("/auth/google/callback", auth.callbackError, auth.callbackSuccess);
-router.get("/success", auth.loginSuccess);
-router.get("/error", auth.loginError);
+// router.get("/", controller.displayTestRouteMessage("Home Page"));
+router.use("/blog", requiresAuth(), require("./blog"));
+
+
+/** Auth Routing **/
+router.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
+});
+router.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
+
+
+
+
+
 
 module.exports = router;
