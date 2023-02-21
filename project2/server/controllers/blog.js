@@ -1,5 +1,5 @@
 const ObjectId = require("mongodb").ObjectId;
-const Blog = require("../models/blog");
+const { Blog } = require("../models/blog");
 
 const getAllPosts = async (req, res) => {
     // #swagger.tags = ['Blog']
@@ -114,7 +114,7 @@ const updatePost = async (req, res) => {
 
         const result = await Blog.findOneAndUpdate(
             filter,
-            { runValidators: true },
+            // { runValidators: true },
             { $set: blog },
             { new: true }
         ).exec();

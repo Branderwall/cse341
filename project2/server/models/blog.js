@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
-// import { composeWithMongoose } from "graphql-compose-mongoose";
 
 const blogSchema = new Schema({
     title: { type: String, required: [true, "Title required"] },
@@ -14,9 +13,6 @@ const blogSchema = new Schema({
 
 const Blog = model("Blog", blogSchema, "blog");
 
-// const BlogTC = composeWithMongoose(Blog);
-
 module.exports = {
     Blog,
-    // BlogTC,
 };
