@@ -6,6 +6,8 @@ const userSchema = new Schema({
     firstName: { type: String, required: [true, "First name required"] },
     lastName: { type: String, required: [true, "Last name required"] },
     email: { type: String, required: [true, "Email required"] },
+    bio: { type: String},
+    avatar: {type: String },
 });
 
 const User = model("User", userSchema, "users");

@@ -60,8 +60,10 @@ const createUser = async (req, res) => {
         const user = new User({
             displayName: req.body.displayName,
             firstName: req.body.firstName,
-            lastName: req.lastName.body,
+            lastName: req.body. lastName,
             email: req.body.email,
+            bio: req.body.bio,
+            avatar: req.body.avatar,
         });
 
         const result = await user.save();
@@ -102,8 +104,10 @@ const updateUser = async (req, res) => {
         const user = {
             displayName: req.body.displayName,
             firstName: req.body.firstName,
-            lastName: req.lastName.body,
+            lastName: req.body. lastName,
             email: req.body.email,
+            bio: req.body.bio,
+            avatar: req.body.avatar,
         };
 
         const result = await User.findOneAndUpdate(

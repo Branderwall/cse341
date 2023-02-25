@@ -34,6 +34,9 @@ const doc = {
             firstName: "Adam",
             lastName: "Tan",
             email: "adam.tan@test.com",
+            bio: "Bowties are cool, pineapples have feelings, and ... bananas.",
+            avatar: "https://testavatar.com/ef86d5e0",
+
         },
     },
 };

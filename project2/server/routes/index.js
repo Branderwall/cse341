@@ -12,6 +12,7 @@ router.use(auth(auth0.authConfig));
 
 // router.get("/", controller.displayTestRouteMessage("Home Page"));
 router.use("/blog", requiresAuth(), require("./blog"));
+router.use("/user", requiresAuth(), require("./user"));
 
 
 /** Auth Routing **/
@@ -29,3 +30,5 @@ router.get('/profile', requiresAuth(), (req, res) => {
 
 
 module.exports = router;
+
+
