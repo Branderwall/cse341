@@ -17,6 +17,7 @@ const doc = {
     ],
     tags: {
         name: "Blog",
+        name: "User",
     },
     definitions: {
         Blog: {
@@ -27,6 +28,12 @@ const doc = {
             publishDate: "02-02-2023",
             tags: "['tech', 'jsx', 'react']",
             featuredImage: "http://fakeurl.com/image",
+        },
+        User: {
+            displayName: "Adam Tan",
+            firstName: "Adam",
+            lastName: "Tan",
+            email: "adam.tan@test.com",
         },
     },
 };
